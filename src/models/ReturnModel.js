@@ -6,8 +6,8 @@ const ReturnShema = mongoose.Schema({
     require: true,
   },
   technical: {
-    type: mongoose.Schema.ObjectId,
-    ref: "User",
+    type: String,
+    require: true
   },
   client: {
     type: String,
@@ -27,12 +27,14 @@ const ReturnShema = mongoose.Schema({
   },
   is_inventory: {
     type: Boolean,
+    require: true,
   },
   pendding: {
     type: Boolean,
+    require: true,
   },
 });
 
-const UserModel =  mongoose.model("Return", ReturnShema)
+const ReturnModel =  mongoose.model("Return", ReturnShema)
 
-module.exports = UserModel
+module.exports = ReturnModel
