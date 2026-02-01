@@ -6,8 +6,9 @@ const ReturnShema = mongoose.Schema({
     require: true,
   },
   technical: {
-    type: String,
-    require: true
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    require: true,
   },
   client: {
     type: String,
@@ -35,6 +36,6 @@ const ReturnShema = mongoose.Schema({
   },
 });
 
-const ReturnModel =  mongoose.model("Return", ReturnShema)
+const ReturnModel = mongoose.model("Return", ReturnShema);
 
-module.exports = ReturnModel
+module.exports = ReturnModel;

@@ -28,7 +28,7 @@ const UserController = {
           user: userData.user,
           permission: userData.permission,
         },
-        process.env.SECRET
+        process.env.SECRET,
       );
 
       return res.status(200).json({
@@ -40,6 +40,20 @@ const UserController = {
         },
         token: token,
       });
+    } catch (error) {
+      res.status(500).json({
+        message: "Erro interno. Tente novamente!",
+        statusError: "500",
+        error: error.message,
+      });
+    }
+  },
+
+  findUsersFromSelect: async (req, res) => {
+    try {
+      const response = await UserModel.find({permission: "user"}, "user _id");
+
+      res.status(200).json(response);
     } catch (error) {
       res.status(500).json({
         message: "Erro interno. Tente novamente!",
