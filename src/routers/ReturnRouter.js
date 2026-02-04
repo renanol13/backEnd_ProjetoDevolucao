@@ -8,6 +8,9 @@ router
   .get("/", checkToken, (req, res) => ReturnController.findReturn(req, res))
   .delete("/:_id", checkToken, (req, res) =>
     ReturnController.deleteReturn(req, res),
-  );
+  )
+  .patch("/:_id", checkToken, (req, res) =>
+    ReturnController.editReturn(req, res),
+  )
 
 module.exports = router;

@@ -78,8 +78,36 @@ const ReturnController = {
         return res.status(404).json({
           message: "Id de devolição não encontrado. Tente Novamente!",
         });
-      
-      res.status(200).json({message: "Devolução removida com sucesso!"})
+
+      res.status(200).json({ message: "Devolução removida com sucesso!" });
+    } catch (error) {
+      res.status(500).json({
+        message: "Erro interno. Tente novamente!",
+        statusError: "500",
+        error: error.message,
+      });
+    }
+  },
+
+  editReturn: async (req, res) => {
+    try {
+      const idReturn = req.params._id;
+      const itemReturn = req.body;
+
+
+      const response = await ReturnModel.findByIdAndUpdate(
+        idReturn,
+        { $set: itemReturn },
+        { new: true },
+      );
+
+      if (!response) {
+        res
+          .status(404)
+          .json({ message: "Devolução não encontrada. Tente novamente!" });
+      }
+
+      res.status(200).json(response);
     } catch (error) {
       res.status(500).json({
         message: "Erro interno. Tente novamente!",
