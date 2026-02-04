@@ -1,5 +1,5 @@
 const app = require("./src/App");
-const connection = require("./src/dataBAse/Connection");
+const connection = require("./src/data/Connection")
 
 const PORT = process.env.PORT | 3001;
 
